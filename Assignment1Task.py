@@ -33,7 +33,10 @@ class Assignment1:
         }
         # Start all the threads
         # Write code here
-
+        for i in self.mThreads:
+            i.start()
+        
+    
         # Let the simulation run for some time
         time.sleep(self.SIMULATION_TIME)
 
