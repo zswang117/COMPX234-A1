@@ -26,7 +26,11 @@ class Assignment1:
         for i in range(Num_MACHINES){
            machine=machineThread(i.Thread)
         self.mThreads.append(machine)
-        
+        }
+        for i in range(Num_PRINTERS){
+            printer=printerThread(i.Thread)
+        self.pThreads.append(printer)
+        }
         # Start all the threads
         # Write code here
 
