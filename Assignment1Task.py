@@ -6,13 +6,6 @@ from printDoc import printDoc
 from printList import printList
 
 class Assignment1:
-    # Simulation Initialisation parameters
-    NUM_MACHINES = 50        # Number of machines that issue print requests
-    NUM_PRINTERS = 5         # Number of printers in the system
-    SIMULATION_TIME = 30     # Total simulation time in seconds
-    MAX_PRINTER_SLEEP = 3    # Maximum sleep time for printers
-    MAX_MACHINE_SLEEP = 5    # Maximum sleep time for machines
-
     # Initialise simulation variables
     def __init__(self):
         self.NUM_MACHINES = 50       
@@ -29,11 +22,11 @@ class Assignment1:
         # Create Machine and Printer threads
         # Write code here
         for i in range(self.Num_MACHINES):
-           machine=machineThread(i.Thread)
+           machine=threading.Thread(target=self.machineRun,args=[i])
         self.mThreads.append(machine)
         
         for i in range(self.Num_PRINTERS):
-            printer=printerThread(i.Thread)
+            printer=threading.Thread(target=self.machineRun,args=[i])
         self.pThreads.append(printer)
         
         # Start all the threads
