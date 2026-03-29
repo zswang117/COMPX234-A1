@@ -15,6 +15,11 @@ class Assignment1:
 
     # Initialise simulation variables
     def __init__(self):
+        self.NUM_MACHINES = 50       
+       self.NUM_PRINTERS = 5        
+       self.SIMULATION_TIME = 30    
+       self.MAX_PRINTER_SLEEP = 3    
+       self.MAX_MACHINE_SLEEP = 5
         self.sim_active = True
         self.print_list = printList()  # Create an empty list of print requests
         self.mThreads = []             # list for machine threads
@@ -23,11 +28,11 @@ class Assignment1:
     def startSimulation(self):
         # Create Machine and Printer threads
         # Write code here
-        for i in range(Num_MACHINES):
+        for i in range(self.Num_MACHINES):
            machine=machineThread(i.Thread)
         self.mThreads.append(machine)
         
-        for i in range(Num_PRINTERS):
+        for i in range(self.Num_PRINTERS):
             printer=printerThread(i.Thread)
         self.pThreads.append(printer)
         
