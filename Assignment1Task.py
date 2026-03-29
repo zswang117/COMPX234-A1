@@ -1,18 +1,18 @@
 import threading
 import time
 import random
-
 from printDoc import printDoc
 from printList import printList
 
 class Assignment1:
-    # Initialise simulation variables
+    # Simulation Initialisation parameters
+    NUM_MACHINES = 50        # Number of machines that issue print requests
+    NUM_PRINTERS = 5         # Number of printers in the system
+    SIMULATION_TIME = 30     # Total simulation time in seconds
+    MAX_PRINTER_SLEEP = 3    # Maximum sleep time for printers
+    MAX_MACHINE_SLEEP = 5    # Maximum sleep time for machines
+    # Initialise simulation variables    
     def __init__(self):
-        self.NUM_MACHINES = 50       
-       self.NUM_PRINTERS = 5        
-       self.SIMULATION_TIME = 30    
-       self.MAX_PRINTER_SLEEP = 3    
-       self.MAX_MACHINE_SLEEP = 5
         self.sim_active = True
         self.print_list = printList()  # Create an empty list of print requests
         self.mThreads = []             # list for machine threads
@@ -21,12 +21,12 @@ class Assignment1:
     def startSimulation(self):
         # Create Machine and Printer threads
         # Write code here
-        for i in range(self.Num_MACHINES):
-           machine=threading.Thread(target=self.machineRun,args=[i])
+        for i in range(Num_MACHINES):
+           machine=machineThread(i,self)
         self.mThreads.append(machine)
         
-        for i in range(self.Num_PRINTERS):
-            printer=threading.Thread(target=self.machineRun,args=[i])
+        for i in range(Num_PRINTERS):
+           printer=printerThread(i,self)
         self.pThreads.append(printer)
         
         # Start all the threads
