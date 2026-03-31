@@ -100,8 +100,14 @@ class Assignment1:
             time.sleep(sleepSeconds)
 
         def printRequest(self, id):
-            print(f"Machine {id} Sent a print request")
+            self.outer.empty_slots.acquire() 
+            try:
+                with self.outer.queue_lock:
+                    print(f"Machine {id} Sent a print request")
             # Build a print document
-            doc = printDoc(f"My name is machine {id}", id)
+                    doc = printDoc(f"My name is machine {id}", id)
             # Insert it in the print queue
-            self.outer.print_list.queueInsert(doc)
+                    self.outer.print_list.queueInsert(doc)
+            except Exception as e:
+                self.outer.empty_slots.release()
+                print(f"!!! Machine {id} 插入请求失败：{str(e)} !!!")
