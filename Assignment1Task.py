@@ -28,7 +28,7 @@ class Assignment1:
         machine=self.machineThread(i,self)
         self.mThreads.append(machine)
         
-        for i in range(Num_PRINTERS):
+        for i in range(self.Num_PRINTERS):
         printer=self.printerThread(i,self)
         self.pThreads.append(printer)
         
@@ -78,7 +78,7 @@ class Assignment1:
             self.outer.print_list.queuePrint(printerID)
              with self.outer.queue_lock: 
                  self.outer.print_list.queuePrint(printerID)  
-            self.outer.empty_slots.release()
+                 self.outer.empty_slots.release()
 
     # Machine class
     class machineThread(threading.Thread):
