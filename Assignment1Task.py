@@ -51,6 +51,7 @@ class Assignment1:
             i.join()
         for i in self.mThreads:
             i.join()
+            
 
     # Printer class
     class printerThread(threading.Thread):
@@ -75,6 +76,9 @@ class Assignment1:
             print(f"Printer ID: {printerID} : now available")
             # Print from the queue
             self.outer.print_list.queuePrint(printerID)
+             with self.outer.queue_lock: 
+                 self.outer.print_list.queuePrint(printerID)  
+            self.outer.empty_slots.release()
 
     # Machine class
     class machineThread(threading.Thread):
